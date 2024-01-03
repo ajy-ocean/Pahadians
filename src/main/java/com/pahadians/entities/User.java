@@ -10,6 +10,7 @@ public class User {
 	private String genger;
 	private String bio;
 	private Timestamp dateTime;
+	private String profile;
 
 	public User() {
 
@@ -91,5 +92,14 @@ public class User {
 	public void setDateTime(Timestamp dateTime) {
 		this.dateTime = dateTime;
 	}
+
+	public String getProfile() {
+		return profile;
+	}
+
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
+	
 	
 }

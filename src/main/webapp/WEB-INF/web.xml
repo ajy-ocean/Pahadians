@@ -19,4 +19,15 @@
     <servlet-name>SignupServlet</servlet-name>
     <url-pattern>/SignupServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SigninServlet</display-name>
+    <servlet-name>SigninServlet</servlet-name>
+    <servlet-class>com.pahadians.servlets.SigninServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SigninServlet</servlet-name>
+    <url-pattern>/SigninServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
+
