@@ -7,7 +7,7 @@ public class User {
 	private String name;
 	private String email;
 	private String password;
-	private String genger;
+	private String gender;
 	private String bio;
 	private Timestamp dateTime;
 	private String profile;
@@ -22,7 +22,7 @@ public class User {
 		this.name = name;
 		this.email = email;
 		this.password = password;
-		this.genger = genger;
+		this.gender = genger;
 		this.bio = bio;
 		this.dateTime = dateTime;
 	}
@@ -32,7 +32,7 @@ public class User {
 		this.name = name;
 		this.email = email;
 		this.password = password;
-		this.genger = genger;
+		this.gender = genger;
 		this.bio = bio;
 	}
 
@@ -69,12 +69,12 @@ public class User {
 		this.password = password;
 	}
 
-	public String getGenger() {
-		return genger;
+	public String getGender() {
+		return gender;
 	}
 
-	public void setGenger(String genger) {
-		this.genger = genger;
+	public void setGender(String genger) {
+		this.gender = genger;
 	}
 
 	public String getBio() {
