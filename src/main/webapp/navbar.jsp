@@ -24,7 +24,7 @@
 				</div></li>
 			<li class="nav-item"><a class="nav-link" href="#"><span class="fa fa-vcard-o"></span> Contact Us</a></li>
 			<li class="nav-item"><a class="nav-link" href="login.jsp"><span class="fa fa-paper-plane"></span> Login</a></li>
-			<li class="nav-item"><a class="nav-link" href="signup.jsp"><span class="fa fa-user-plus"></span> Sign-up</a></li>
+			<li class="nav-item"><a class="nav-link" href="signup.jsp"><span class="fa fa-sign-in"></span> Sign-up</a></li>
 	
 		</ul>
 		<form class="form-inline my-2 my-lg-0">

@@ -42,7 +42,7 @@ public class SignupServlet extends HttpServlet {
 				if (userDao.saveUser(user)) {
 					out.println("Data inserted Successfully");
 				} else {
-					out.println("Failed to insert the DATA");
+					out.println("Error..");
 				}
 			}
 
