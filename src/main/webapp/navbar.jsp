@@ -17,10 +17,9 @@
 				role="button" data-toggle="dropdown" aria-haspopup="true"
 				aria-expanded="false"><span class="fa fa-group"></span> Join your Group </a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item" href="#">Rishikesh Wale</a> <a
-						class="dropdown-item" href="#">Dehradun Wale</a>
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#">Tehri Wale</a>
+					<a class="dropdown-item" href="#">Rishikesh Wale Java Coders</a> <a
+						class="dropdown-item" href="#">Dehradun Wale Python Coders</a>
+					<a class="dropdown-item" href="#">Tehri Wale UI Designers</a>
 				</div></li>
 			<li class="nav-item"><a class="nav-link" href="#"><span class="fa fa-vcard-o"></span> Contact Us</a></li>
 			<li class="nav-item"><a class="nav-link" href="login.jsp"><span class="fa fa-paper-plane"></span> Login</a></li>

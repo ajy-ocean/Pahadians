@@ -1,5 +1,9 @@
-<%@ page import="com.pahadians.entities.Message" %>
+<%@ page import="com.pahadians.entities.Message"%>
 <%@ page import="com.pahadians.entities.User"%>
+<%@ page import="com.pahadians.dao.PostDao"%>
+<%@ page import="com.pahadians.entities.Category"%>
+<%@ page import="com.pahadians.helper.ConnectionProvider"%>
+<%@ page import="java.util.*"%>
 <%@ page errorPage="error.jsp"%>
 <%
 User user = (User) session.getAttribute("currentUser");
@@ -58,13 +62,15 @@ if (user == null) {
 					aria-expanded="false"><span class="fa fa-group"></span> Join
 						your Group </a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="#">Rishikesh Wale</a> <a
-							class="dropdown-item" href="#">Dehradun Wale</a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#">Tehri Wale</a>
+						<a class="dropdown-item" href="#">Rishikesh Wale Java Coders</a> <a
+							class="dropdown-item" href="#">Dehradun Wale Python Coders</a>
+						<a class="dropdown-item" href="#">Tehri Wale UI Designers</a>
 					</div></li>
 				<li class="nav-item"><a class="nav-link" href="#"><span
 						class="fa fa-vcard-o"></span> Contact Us</a></li>
+				<li class="nav-item"><a class="nav-link" href="#"
+					data-toggle="modal" data-target="#add-post-modal"><span
+						class="fa fa-edit"></span> Post</a></li>
 			</ul>
 
 			<ul class="navbar-nav mr-right">
@@ -199,6 +205,70 @@ if (user == null) {
 		</div>
 	</div>
 	<%-- End of profile modal --%>
+
+	<!-- Post Modal -->
+
+	<!-- Modal -->
+	<div class="modal fade" id="add-post-modal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Add Post</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form action="AddPostServlet" method="post">
+
+						<div class="form-group">
+							<select class="form-control">
+								<option selected disabled>Select Category</option>
+
+								<%
+								PostDao postDao = new PostDao(ConnectionProvider.getConnection());
+								ArrayList<Category> list = postDao.getAllCategories();
+								for (Category c : list) {
+								%>
+								<option>
+									<%=c.getName()%>
+								</option>
+
+								<%
+								}
+								%>
+							</select>
+
+						</div>
+
+						<div class="form-group">
+							<input class="form-control" type="text" placeholder="Enter title">
+						</div>
+						<div class="form-group">
+							<textarea class="form-control" placeholder="Enter something"
+								style="height: 150px;"></textarea>
+						</div>
+						<div class="form-group">
+							<textarea class="form-control"
+								placeholder="Enter your program(optional)"
+								style="height: 150px;"></textarea>
+						</div>
+						<div class="form-group">
+							<label>Select Picture</label> <br> <input type="file">
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Save changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Post Modal -->
 
 	<!-- Javascript -->
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
