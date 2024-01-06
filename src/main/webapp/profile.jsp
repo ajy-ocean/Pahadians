@@ -1,3 +1,4 @@
+<%@ page import="com.pahadians.entities.Message" %>
 <%@ page import="com.pahadians.entities.User"%>
 <%@ page errorPage="error.jsp"%>
 <%
@@ -78,6 +79,20 @@ if (user == null) {
 	</nav>
 	<%-- End Of Navbar --%>
 
+	<%
+	Message msg = (Message) session.getAttribute("msg");
+	if (msg != null) {
+	%>
+	<div class="alert <%=msg.getCssClass()%>" role="alert">
+		<%=msg.getContent()%>
+	</div>
+
+	<%
+	session.removeAttribute("msg");
+	}
+	%>
+
+
 	<%-- profile modal --%>
 
 	<!-- Modal -->
@@ -128,8 +143,10 @@ if (user == null) {
 
 						<!-- profile edit -->
 						<div id="profile-edit" style="display: none">
-							<h3 class="font-weight-bold text-danger mt-2">Edit Cautiously!!!</h3>
-							<form action="EditServlet" method="post" enctype="multipart/form-data">
+							<h3 class="font-weight-bold text-danger mt-2">Edit
+								Cautiously!!!</h3>
+							<form action="EditServlet" method="post"
+								enctype="multipart/form-data">
 								<table class="table">
 									<tr>
 										<td>ID :</td>
@@ -156,15 +173,13 @@ if (user == null) {
 									</tr>
 									<tr>
 										<td>Bio :</td>
-										<td>
-											<textarea rows:"4" class="form-control" name="user_bio"><%=user.getBio()%></textarea>
-										</td>
+										<td><textarea rows:"4" class="form-control"
+												name="user_bio"><%=user.getBio()%></textarea></td>
 									</tr>
 									<tr>
 										<td>Update Picture:</td>
-										<td>
-											<input class="form-control" type="file" name="update-img">
-										</td>
+										<td><input class="form-control" type="file"
+											name="update-img"></td>
 									</tr>
 								</table>
 								<div class="container">
@@ -177,7 +192,8 @@ if (user == null) {
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">Close</button>
-					<button type="button" id="edit-profile-btn" class="btn primary-background text-white">Edit</button>
+					<button type="button" id="edit-profile-btn"
+						class="btn primary-background text-white">Edit</button>
 				</div>
 			</div>
 		</div>
