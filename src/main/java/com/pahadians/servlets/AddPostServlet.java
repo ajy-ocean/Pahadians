@@ -40,8 +40,8 @@ public class AddPostServlet extends HttpServlet {
 			// Getting current userid
 			HttpSession session = request.getSession();
 			User user = (User) session.getAttribute("currentUser");
-			out.println("Title:-" + pTitle);
-			out.println("pic:- " + part.getSubmittedFileName());
+			// out.println("Title:-" + pTitle);
+			// out.println("pic:- " + part.getSubmittedFileName());
 
 			Post post = new Post(pTitle, pContent, pCode, part.getSubmittedFileName(), null, cid, user.getId());
 			PostDao postDao = new PostDao(ConnectionProvider.getConnection());

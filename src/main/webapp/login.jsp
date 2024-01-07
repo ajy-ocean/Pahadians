@@ -70,7 +70,7 @@
 								</div>
 								<br>
 								<div class="container text-center">
-									<button type="submit" class="btn btn-primary">Submit</button>
+									<button type="submit" class="btn primary-background text-white">Submit</button>
 								</div>
 							</form>
 						</div>
