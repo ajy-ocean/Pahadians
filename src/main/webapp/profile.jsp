@@ -63,8 +63,8 @@ if (user == null) {
 						your Group </a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 						<a class="dropdown-item" href="#">Rishikesh Wale Java Coders</a> <a
-							class="dropdown-item" href="#">Dehradun Wale Python Coders</a>
-						<a class="dropdown-item" href="#">Tehri Wale UI Designers</a>
+							class="dropdown-item" href="#">Dehradun Wale Python Coders</a> <a
+							class="dropdown-item" href="#">Tehri Wale UI Designers</a>
 					</div></li>
 				<li class="nav-item"><a class="nav-link" href="#"><span
 						class="fa fa-vcard-o"></span> Contact Us</a></li>
@@ -97,6 +97,42 @@ if (user == null) {
 	session.removeAttribute("msg");
 	}
 	%>
+
+	<!-- Main Body of the page -->
+	<main>
+		<div class="container">
+			<div class="row mt-3">
+				<!-- First Column -->
+				<div class="col-md-3">
+					<!-- Categories -->
+					<div class="list-group">
+						<a href="#" class="list-group-item list-group-item-action active primary-background text-white">
+							All Posts
+						</a>
+						<%
+							PostDao dao = new PostDao(ConnectionProvider.getConnection());
+							ArrayList<Category> listOfCategory = dao.getAllCategories();
+							for(Category category : listOfCategory)
+							{
+						%>
+							<a href="#" class="list-group-item list-group-item-action">
+								<%= category.getName() %>
+							</a>
+						<%		
+							}
+						%>
+					</div>
+				</div>
+
+				<!-- Second Column -->
+				<div class="col-md-8">
+					<!-- Posts -->
+				</div>
+
+			</div>
+		</div>
+	</main>
+	<!-- End of Main Body of the page -->
 
 	<%-- profile modal --%>
 
@@ -220,7 +256,7 @@ if (user == null) {
 					</button>
 				</div>
 				<div class="modal-body">
-				<!-- FORM -->
+					<!-- FORM -->
 					<form id="add-post-form" action="AddPostServlet" method="post">
 
 						<div class="form-group">
@@ -232,7 +268,7 @@ if (user == null) {
 								ArrayList<Category> list = postDao.getAllCategories();
 								for (Category c : list) {
 								%>
-								<option value="<%= c.getCid() %>">
+								<option value="<%=c.getCid()%>">
 									<%=c.getName()%>
 								</option>
 
@@ -244,11 +280,12 @@ if (user == null) {
 						</div>
 
 						<div class="form-group">
-							<input name="pTitle" class="form-control" type="text" placeholder="Enter title">
+							<input name="pTitle" class="form-control" type="text"
+								placeholder="Enter title">
 						</div>
 						<div class="form-group">
-							<textarea name="pContent" class="form-control" placeholder="Enter something"
-								style="height: 150px;"></textarea>
+							<textarea name="pContent" class="form-control"
+								placeholder="Enter something" style="height: 150px;"></textarea>
 						</div>
 						<div class="form-group">
 							<textarea name="pCode" class="form-control"
@@ -256,9 +293,10 @@ if (user == null) {
 								style="height: 150px;"></textarea>
 						</div>
 						<div class="form-group">
-							<label>Select Picture</label> <br> <input name="pic" type="file">
+							<label>Select Picture</label> <br> <input name="pic"
+								type="file">
 						</div>
-						
+
 						<div class="container text-center">
 							<button type="submit" class="btn primary-background text-white">Submit</button>
 						</div>
@@ -281,9 +319,10 @@ if (user == null) {
 		src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
 		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 		crossorigin="anonymous"></script>
-		
-		<!-- Sweet alert cdn -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+
+	<!-- Sweet alert cdn -->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
 	<!--  MyJavascrip-->
 	<script src="/Pahadians/src/main/webapp/js/scriptName.js"
@@ -308,39 +347,82 @@ if (user == null) {
 			});
 		});
 	</script>
-	
+
 	<!-- JavaScript code for Post -->
 	<script>
-		$(document).ready(function(e){
-			$("#add-post-form").on("submit", function(event){
-				/* When we submit our form then this code gets called */
-				event.preventDefault();
-				console.log("Clicked on Submit");
-				let form = new FormData(this);
-				
-				/* Sending Request To SERVER  */
-				$.ajax({
-					url: "AddPostServlet",
-					type:'POST',
-					data: form,
-					success: function (data, textStatus, jqXHR) {
-						/* This is code is executed if our request is successfully fetched */
-						console.log(data);
-						if(data.trim()=='DONE'){
-							swal("Good job!", "Saved Successfully!", "success");
-						}else {
-							swal("Error!", "Something Went Wrong Try Again!", "error");
-						}
-					},
-					error: function (jqXHR, textStatus, errorThrown) {
-						// Error
-						swal("Error!", "Something Went Wrong Try Again!", "error");
-					},
-					processData: false,
-					contentType: false
-				})
-			})
-		});
+		$(document)
+				.ready(
+						function(e) {
+							$("#add-post-form")
+									.on(
+											"submit",
+											function(event) {
+												/* When we submit our form then this code gets called */
+												event.preventDefault();
+												console
+														.log("Clicked on Submit");
+												let form = new FormData(this);
+
+												/* Sending Request To SERVER  */
+												$
+														.ajax({
+															url : "AddPostServlet",
+															type : 'POST',
+															data : form,
+															success : function(
+																	data,
+																	textStatus,
+																	jqXHR) {
+																/* This is code is executed if our request is successfully fetched */
+																console
+																		.log(data);
+																if (data.trim() == 'DONE') {
+																	/* swal("Good job!", "Saved Successfully!", "success"); */
+																	swal(
+																			"Good job!",
+																			"Saved Successfully!",
+																			"success")
+																			.then(
+																					function() {
+																						// Redirect to another page
+																						window.location.href = "profile.jsp";
+																					});
+
+																} else {
+																	swal(
+																			"Error!",
+																			"Something Went Wrong Try Again!",
+																			"error")
+																			.then(
+																					function() {
+																						// Redirect to another page
+																						window.location.href = "profile.jsp";
+																					});
+																}
+															},
+															error : function(
+																	jqXHR,
+																	textStatus,
+																	errorThrown) {
+																// Error
+
+																swal(
+																		"Error!",
+																		"Something Went Wrong Try Again!",
+																		"error")
+																		.then(
+																				function() {
+																					// Redirect to another page
+																					window.location.href = "profile.jsp";
+																				});
+
+															},
+
+															processData : false,
+															contentType : false
+														})
+											})
+						});
 	</script>
 </body>
 </html>
