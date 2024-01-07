@@ -98,7 +98,6 @@ if (user == null) {
 	}
 	%>
 
-
 	<%-- profile modal --%>
 
 	<!-- Modal -->
@@ -221,10 +220,11 @@ if (user == null) {
 					</button>
 				</div>
 				<div class="modal-body">
-					<form action="AddPostServlet" method="post">
+				<!-- FORM -->
+					<form id="add-post-form" action="AddPostServlet" method="post">
 
 						<div class="form-group">
-							<select class="form-control">
+							<select class="form-control" name="cid">
 								<option selected disabled>Select Category</option>
 
 								<%
@@ -232,7 +232,7 @@ if (user == null) {
 								ArrayList<Category> list = postDao.getAllCategories();
 								for (Category c : list) {
 								%>
-								<option>
+								<option value="<%= c.getCid() %>">
 									<%=c.getName()%>
 								</option>
 
@@ -244,26 +244,25 @@ if (user == null) {
 						</div>
 
 						<div class="form-group">
-							<input class="form-control" type="text" placeholder="Enter title">
+							<input name="pTitle" class="form-control" type="text" placeholder="Enter title">
 						</div>
 						<div class="form-group">
-							<textarea class="form-control" placeholder="Enter something"
+							<textarea name="pContent" class="form-control" placeholder="Enter something"
 								style="height: 150px;"></textarea>
 						</div>
 						<div class="form-group">
-							<textarea class="form-control"
+							<textarea name="pCode" class="form-control"
 								placeholder="Enter your program(optional)"
 								style="height: 150px;"></textarea>
 						</div>
 						<div class="form-group">
-							<label>Select Picture</label> <br> <input type="file">
+							<label>Select Picture</label> <br> <input name="pic" type="file">
+						</div>
+						
+						<div class="container text-center">
+							<button type="submit" class="btn primary-background text-white">Submit</button>
 						</div>
 					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Save changes</button>
 				</div>
 			</div>
 		</div>
@@ -306,6 +305,40 @@ if (user == null) {
 			});
 		});
 	</script>
+	
+	<!-- JavaScript code for Post -->
+	<script>
+		$(document).ready(function(e){
+			$("#add-post-form").on("submit", function(event){
+				/* When we submit our form then this code gets called */
+				event.preventDefault();
+				console.log("Clicked on Submit");
+				let form = new FormData(this);
+				
+				/* Sending Request To SERVER  */
+				$.ajax({
+					url: "AddPostServlet",
+					type:'POST',
+					data: form,
+					success: function (data, textStatus, jqXHR) {
+						/* This is code is executed if our request is successfully fetched */
+						console.log(data);
+					},
+					error: function (jqXHR, textStatus, errorThrown) {
+						// Error
+					},
+					processData: false,
+					contentType: false
+				})
+			})
+		});
+	</script>
 </body>
 </html>
+
+
+
+
+
+
 

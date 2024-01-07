@@ -28,7 +28,6 @@ public class EditServlet extends HttpServlet {
 
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// Fetching username & password from request
 		try (PrintWriter out = response.getWriter()) {
 
 			out.println("<!DOCTYPE html>");
@@ -49,6 +48,7 @@ public class EditServlet extends HttpServlet {
 			// Get the user from the session
 			HttpSession httpSession = request.getSession();
 			User user = (User) httpSession.getAttribute("currentUser");
+			user.setName(userEmail);
 			user.setName(userName);
 			user.setPassword(userPassword);
 			user.setBio(userBio);

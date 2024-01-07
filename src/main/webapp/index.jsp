@@ -42,10 +42,10 @@
 				<p>Every Region Has Its Story Imbued In Its Signature Art,
 					Architecture, And Gourmet Styles. The Livelihood Also Speaks
 					Volumes About The People. Similarly, The Pahadi Residents Showcase
-					Their Uniqueness Through Several Facets That Are Listed Below.</p>
-				<button class="btn btn-outline-light btn-lg">
+					Their Uniqueness Through Several Facets.</p>
+				<a href="signup.jsp" class="btn btn-outline-light btn-lg">
 					<span class="fa fa-leaf"></span> Start ! pahadis
-				</button>
+				</a>
 				<a href="login.jsp" class="btn btn-outline-light btn-lg">
 					<span class="fa fa-paper-plane fa-spin"></span> Login
 				</a>
