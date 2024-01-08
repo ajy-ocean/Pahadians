@@ -30,19 +30,18 @@ public class UserDao {
 		}
 		return f;
 	}
-	
-	
+
 	// Method that takes userEmail & userPassword
 	public User getUserByEmailAndPassword(String email, String password) {
 		User user = null;
-		
+
 		try {
 			String query = "SELECT * FROM user WHERE email = ? AND password = ?";
 			PreparedStatement pstmt = con.prepareStatement(query);
 			pstmt.setString(1, email);
 			pstmt.setString(2, password);
 			ResultSet set = pstmt.executeQuery();
-			if(set.next()) {
+			if (set.next()) {
 				user = new User();
 				// Retrieved Data from Db
 				String name = set.getString("name");
@@ -56,14 +55,14 @@ public class UserDao {
 				user.setDateTime(set.getTimestamp("signupdate"));
 				user.setProfile(set.getString("profile"));
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return user;
 	}
-	
+
 	public boolean updateUser(User user) {
 		boolean f = false;
 		try {
@@ -76,24 +75,43 @@ public class UserDao {
 			pstmt.setString(5, user.getBio());
 			pstmt.setString(6, user.getProfile());
 			pstmt.setInt(7, user.getId());
-			pstmt.executeUpdate();	
+			pstmt.executeUpdate();
 			f = true;
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return f;
 	}
+
+	public User getUserByUserId(int userId) {
+		User user = null;
+		try {
+			String query = "SELECT * FROM user WHERE id = ?";
+			PreparedStatement pstmt = this.con.prepareStatement(query);
+			pstmt.setInt(1, userId);
+			ResultSet set = pstmt.executeQuery();
+
+			if (set.next()) {
+
+				user = new User();
+				// Retrieved Data from Db
+				String name = set.getString("name");
+				// Set to user obj
+				user.setName(name);
+				user.setId(set.getInt("id"));
+				user.setEmail(set.getString("email"));
+				user.setPassword(set.getString("password"));
+				user.setGender(set.getString("gender"));
+				user.setBio(set.getString("bio"));
+				user.setDateTime(set.getTimestamp("signupdate"));
+				user.setProfile(set.getString("profile"));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return user;
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
-

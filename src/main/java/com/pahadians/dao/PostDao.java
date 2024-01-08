@@ -74,7 +74,7 @@ public class PostDao {
 			while(set.next()) {
 				int pid = set.getInt("pid");
 				String pTitle = set.getString("pTitle");
-				String pContent = set.getString("pCode");
+				String pContent = set.getString("pContent");
 				String pCode = set.getString("pCode");
 				String pPic = set.getString("pPic");
 				Timestamp date = set.getTimestamp("pDate");
@@ -102,7 +102,7 @@ public class PostDao {
 			while(set.next()) {
 				int pid = set.getInt("pid");
 				String pTitle = set.getString("pTitle");
-				String pContent = set.getString("pCode");
+				String pContent = set.getString("pContent");
 				String pCode = set.getString("pCode");
 				String pPic = set.getString("pPic");
 				Timestamp date = set.getTimestamp("pDate");
@@ -116,5 +116,42 @@ public class PostDao {
 		}
 		return listOfPost;
 	}
-
+	
+	public Post getPostByPostId(int postId) 
+	{
+		Post post = null;
+		String query = "SELECT * FROM post WHERE pid=?";
+		try 
+		{
+			PreparedStatement pstmt = this.con.prepareStatement(query);
+			pstmt.setInt(1, postId);
+			ResultSet set = pstmt.executeQuery();
+			
+			if(set.next()) 
+			{
+				int pid = set.getInt("pid");
+				String pTitle = set.getString("pTitle");
+				String pContent = set.getString("pContent");
+				String pCode = set.getString("pCode");
+				String pPic = set.getString("pPic");
+				Timestamp date = set.getTimestamp("pDate");
+				
+				int cid = set.getInt("cid");
+				int userId = set.getInt("userId");
+				
+				post = new Post(pid, pTitle, pContent, pCode, pPic, date, cid, userId);
+			}
+			
+			
+		} catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+		return post;
+	}
 }
+
+
+
+
+

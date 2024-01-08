@@ -5,6 +5,8 @@
 <%@ page import="com.pahadians.helper.ConnectionProvider"%>
 <%@ page import="java.util.*"%>
 <%@ page errorPage="error.jsp"%>
+
+<!-- Authentication Code -->
 <%
 User user = (User) session.getAttribute("currentUser");
 if (user == null) {
@@ -40,6 +42,12 @@ if (user == null) {
             color: white;
             border: none;
         }
+        
+body {
+	background:url(img/bg.png);
+	background-size: cover;
+	background-attachment: fixed;
+}
 </style>
 
 </head>

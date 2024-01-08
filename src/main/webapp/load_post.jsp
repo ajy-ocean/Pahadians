@@ -48,6 +48,7 @@
 					<a href="#" class="btn btn-sm btn-outline-light">
 					<i class="fa fa-commenting-o"> <span>20</span></i>
 					</a>
+					
 				</div>
 			</div>		
 		</div>
