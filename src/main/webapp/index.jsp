@@ -148,7 +148,7 @@
 		crossorigin="anonymous"></script>
 
 	<!--  MyJavascrip-->
-	<script src="/Pahadians/src/main/webapp/js/scriptName.js"
+	<script src="js/scriptName.js"
 		type="text/javascript"></script>
 
 </body>

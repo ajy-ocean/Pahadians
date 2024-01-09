@@ -346,7 +346,7 @@ body {
 		src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
 	<!--  MyJavascrip-->
-	<script src="/Pahadians/src/main/webapp/js/scriptName.js"
+	<script src="js/scriptName.js"
 		type="text/javascript"></script>
 
 	<script>

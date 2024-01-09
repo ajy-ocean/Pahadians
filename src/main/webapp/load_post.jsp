@@ -1,3 +1,5 @@
+<%@page import="com.pahadians.entities.User"%>
+<%@page import="com.pahadians.dao.LikeDao"%>
 <%@page import="com.pahadians.entities.Post"%>
 <%@page import="java.util.List"%>
 <%@ page import="com.pahadians.dao.PostDao"%>
@@ -5,6 +7,8 @@
 
 <div class="row">
 	<%
+	User user = (User)session.getAttribute("currentUser");
+	
 	/* This thread.sleep() is used to show loader that's all 
 	   since the project is running of a local machine but if
 	   it is running on some server then don't use it coz it will
@@ -39,14 +43,18 @@
 				</div>
 				<div class="card-footer primary-background text-center">
 					
-					<a href="#" class="btn btn-sm btn-outline-light">
-					<i class="fa fa-thumbs-o-up"> <span>10</span></i>
+					<%
+						LikeDao ld = new LikeDao(ConnectionProvider.getConnection());
+					%>
+					
+					<a href="#" onclick="doLike(<%=post.getPid()%>, <%= user.getId()%>)" class="btn btn-sm btn-outline-light">
+					<i class="fa fa-thumbs-o-up"></i><span class="like-counter"><%= ld.countLikeOnPost(post.getPid()) %></span>
 					</a>
 					
 					<a href="show_blog_page.jsp?post_id=<%= post.getPid() %>" class="btn btn-sm btn-outline-light">Read More...</a>
 					
 					<a href="#" class="btn btn-sm btn-outline-light">
-					<i class="fa fa-commenting-o"> <span>20</span></i>
+					<i class="fa fa-commenting-o"></i><span>20</span>
 					</a>
 					
 				</div>

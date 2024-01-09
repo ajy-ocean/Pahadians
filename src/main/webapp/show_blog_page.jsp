@@ -1,3 +1,4 @@
+<%@page import="com.pahadians.dao.LikeDao"%>
 <%@page import="java.text.DateFormat"%>
 <%@page import="com.pahadians.dao.UserDao"%>
 <%@page import="com.pahadians.entities.Post"%>
@@ -81,12 +82,13 @@ body {
 	background-size: cover;
 	background-attachment: fixed;
 }
-
-
 </style>
+<!-- Meta comment plugin -->
+<div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v18.0"
+        nonce="qA6cc5O7"></script>
 </head>
 <body>
-	
 	<%-- Navbar --%>
 	<nav class="navbar navbar-expand-lg navbar-dark primary-background">
 		<a class="navbar-brand" href="index.jsp"> <span class="fa fa-tree"></span>
@@ -176,13 +178,25 @@ body {
 					  </div>
 					</div>
 					<div class="card-footer primary-background">
-					  <a href="#" class="btn btn-sm btn-outline-light">
-					    <i class="fa fa-thumbs-o-up"> <span>10</span></i>
+					<%
+						LikeDao ld = new LikeDao(ConnectionProvider.getConnection());
+					%>
+					  <a href="#!" onclick="doLike(<%=post.getPid()%>, <%= user.getId()%>)" class="btn btn-sm btn-outline-light">
+					    <i class="fa fa-thumbs-o-up"></i><span class="like-counter"><%= ld.countLikeOnPost(post.getPid()) %></span>
 					  </a>
-					  <a href="#" class="btn btn-sm btn-outline-light">
-					    <i class="fa fa-commenting-o"> <span>20</span></i>
+					  <a href="#!" class="btn btn-sm btn-outline-light">
+					    <i class="fa fa-commenting-o"></i><span>20</span>
 					  </a>
 					</div>
+					
+					<!--
+						 Meta comment plugin 
+						 It does not work on localhost 
+						 I have put it to make it look decent
+					-->
+					 <div class="card-footer">
+        				<div class="fb-comments" data-href="http://yourdomain.com/your-page.html" data-width="600" data-numposts="5"></div>
+    				</div>
 				</div>
 			</div>
 		</div>
@@ -381,7 +395,7 @@ body {
 		src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
 	<!--  MyJavascrip-->
-	<script src="/Pahadians/src/main/webapp/js/scriptName.js"
+	<script src="js/scriptName.js"
 		type="text/javascript"></script>
 
 	<script>
