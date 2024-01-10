@@ -68,6 +68,9 @@
 										name="password" required type="password" class="form-control"
 										id="exampleInputPassword1" placeholder="Password">
 								</div>
+								<div class="form-group">
+									New to Pahadians - <a href="signup.jsp">Sign Up</a>
+								</div>
 								<br>
 								<div class="container text-center">
 									<button type="submit" class="btn primary-background text-white">Submit</button>
